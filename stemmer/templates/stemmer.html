@@ -1,0 +1,68 @@
+{% extends "silpa.html" %}
+{% block modulescript %}
+<script>
+  $(document).ready(function() {
+  $("form").submit(function(event)
+  {
+  event.preventDefault();
+  var text= $("textarea[name=input_text]", 'form').val();
+  var jsonRequest = {
+  "method" :  "stemmer.stem",
+  "params" : [text],
+  "id" : ""
+  };
+  $.ajax({
+  type: "POST",
+  contentType: "application/json; charset=utf-8",
+  url: "JSONRPC",
+  data: JSON.stringify(jsonRequest),
+  dataType: "json",
+  beforeSend:function(){
+  $('#progress') .html("Processing. Please Wait...").show();
+  $('#result').hide();
+  $("#error").hide();
+  },
+  success: function(msg) {
+  $('#progress').hide();
+  var resultobj =  msg.result ;
+  // Render it
+  $('#result').append("<table id='resulttable' class='table table-bordered table-striped'><tr><th>Word</th><th>Stem</th></tr></table>").show();
+  for (var key in resultobj){
+  $('#resulttable tr:last').after("<tr><td>" + key +"</td><td>" + resultobj[key] +"</td></tr>" );
+  };
+
+  },
+  error: function(msg) {
+  $("#progress").hide()
+  $("#error").html("somethin went wrong").show();
+  }
+  });
+
+
+
+
+
+  });
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="well">
+    <h2>Stemmer</h2></hr>
+    <p>This application helps you to stem the words in the given text. Currently supports only Malayalam. Note that this is very experimental and uses a rule based approach.
+    </p>
+
+    <form>
+      <div class="control"><textarea  name='input_text' class="span12" id='input_text'></textarea></div></br>
+
+<div class="control"><input class="btn btn-primary"  type="submit" id="Stem_button" value="Stem"  name="action" style="width:12em;"/></div>
+        </br>
+</form>
+<hr/>
+<div id="progress"></div>
+<div id="successmessage"></div>
+<div id="errormessage"></div>
+<div id="result"></div>
+</div>
+{% endblock %}
