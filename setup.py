@@ -6,8 +6,7 @@ name = "stemmer"
 
 setup(
     name=name,
-    version="0.2.1",
-    url="http://silpa.org.in/sort",
+    version="0.1",
     license="LGPL-3.0",
     description="Malayalam word stemmer",
     author="Santhosh Thottingal",
