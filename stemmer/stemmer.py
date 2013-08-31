@@ -25,16 +25,18 @@ import codecs
 import os
 import string
 from silpa_common import *
+import normalizer
 
 
 class Stemmer:
     def __init__(self):
         self.rules_file = os.path.join(os.path.dirname(__file__), 'stemmer_ml.rules')
         self.rulesDict = None
+        self.normalizer = normalizer.getInstance()
 
     def stem(self, text):
         result = ""
-        text = normalize(text)
+        text = self.normalizer.normalize(text)
         if self.rulesDict is None:
             self.rulesDict = self.LoadRules()
         words = text.split(" ")
