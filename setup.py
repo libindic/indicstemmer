@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-name = "stemmer"
+name = "indicstemmer"
 
 setup(
     name=name,
