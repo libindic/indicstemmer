@@ -21,6 +21,7 @@ pip-log.txt
 
 # vim and emacs files
 ~*
+*.swp
 *~
 .venv
 #*#
