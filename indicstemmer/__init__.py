@@ -1,4 +1,4 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-from  stemmer import *
+from  core  import getInstance,Stemmer
 
