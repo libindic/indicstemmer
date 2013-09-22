@@ -5,6 +5,7 @@
 *.egg-info
 dist
 build
+docs/_build
 eggs
 parts
 bin
@@ -22,7 +23,6 @@ pip-log.txt
 ~*
 *~
 .venv
-static
 #*#
 .#*
 

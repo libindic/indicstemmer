@@ -24,17 +24,24 @@ import sys
 import codecs
 import os
 import string
-from silpa_common import *
 import normalizer
 
 
 class Stemmer:
+    """
+    Instantiate class to get the methods
+    """
     def __init__(self):
         self.rules_file = os.path.join(os.path.dirname(__file__), 'stemmer_ml.rules')
         self.rulesDict = None
         self.normalizer = normalizer.getInstance()
 
     def stem(self, text):
+        """
+        :param text: unicode encoded malayalam string
+        :returns: dictionary with words as the key and the stemmer result as the value
+        stems all the words in the given text and returns a dictionary
+        """
         result = ""
         text = self.normalizer.normalize(text)
         if self.rulesDict is None:
@@ -117,9 +124,15 @@ class Stemmer:
         return word
 
     def get_module_name(self):
+        """
+        returns the module name.
+        """
         return "Stemmer"
 
     def get_info(self):
+        """
+        returns info on the module
+        """
         return     "Malayalam Stemmer(Experimental)"
 
 def getInstance():
