@@ -19,7 +19,7 @@
   dataType: "json",
   beforeSend:function(){
   $('#progress') .html("Processing. Please Wait...").show();
-  $('#result').hide();
+  $('#result').empty();
   $("#error").hide();
   },
   success: function(msg) {
