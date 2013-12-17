@@ -1,48 +1,52 @@
 {% extends "silpa.html" %}
+
 {% block modulescript %}
 <script>
   $(document).ready(function() {
-  $("form").submit(function(event)
-  {
-  event.preventDefault();
-  var text= $("textarea[name=input_text]", 'form').val();
-  var jsonRequest = {
-  "method" :  "indicstemmer.stem",
-  "params" : [text],
-  "id" : ""
-  };
-  $.ajax({
-  type: "POST",
-  contentType: "application/json; charset=utf-8",
-  url: "JSONRPC",
-  data: JSON.stringify(jsonRequest),
-  dataType: "json",
-  beforeSend:function(){
-  $('#progress') .html("Processing. Please Wait...").show();
-  $('#result').empty();
-  $("#error").hide();
-  },
-  success: function(msg) {
-  $('#progress').hide();
-  var resultobj =  msg.result ;
-  // Render it
-  $('#result').append("<table id='resulttable' class='table table-bordered table-striped'><tr><th>Word</th><th>Stem</th></tr></table>").show();
-  for (var key in resultobj){
-  $('#resulttable tr:last').after("<tr><td>" + key +"</td><td>" + resultobj[key] +"</td></tr>" );
-  };
+    $("form").submit(function(event)
+    {
+      event.preventDefault();
+      var idProgress = $('#progress'),
+        idResult = $('#result'),
+        idError = $('#error'),
+        text= $("textarea[name=input_text]", 'form').val(),
+        jsonRequest = {
+          method:  "indicstemmer.stem",
+          params: [text],
+          id: ""
+        };
 
-  },
-  error: function(msg) {
-  $("#progress").hide()
-  $("#error").html("somethin went wrong").show();
-  }
-  });
-
-
-
-
-
-  });
+      if(text !== "") {
+        $.ajax({
+          type: "POST",
+          contentType: "application/json; charset=utf-8",
+          url: "JSONRPC",
+          data: JSON.stringify(jsonRequest),
+          dataType: "json",
+          beforeSend:function(){
+            idProgress.html("Processing. Please Wait...").show();
+            idResult.empty();
+            idError.hide();
+          },
+          success: function(msg) {
+            idProgress.hide();
+            var resultobj =  msg.result ;
+            // TODO: write this in a better way.
+            $('#result').append("<table id='resulttable' class='table table-bordered table-striped'><tr><th>Word</th><th>Stem</th></tr></table>").show();
+            for (var key in resultobj){
+            $('#resulttable tr:last').after("<tr><td>" + key +"</td><td>" + resultobj[key] +"</td></tr>" );
+            };
+          },
+          error: function(msg) {
+            idProgress.hide()
+            idError.html("Something went wrong").show();
+          }
+        });
+      } else {
+        idResult.hide();
+        idError.html("Enter text").show();
+      }
+    });
   });
 </script>
 {% endblock %}
@@ -61,8 +65,7 @@
 </form>
 <hr/>
 <div id="progress"></div>
-<div id="successmessage"></div>
-<div id="errormessage"></div>
+<div id="error"></div>
 <div id="result"></div>
 </div>
 {% endblock %}
