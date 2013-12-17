@@ -52,20 +52,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="well">
-    <h2>Stemmer</h2></hr>
-    <p>This application helps you to stem the words in the given text. Currently supports only Malayalam. Note that this is very experimental and uses a rule based approach.
-    </p>
+<div class="page-header">
+<h1>Stemmer</h1>
+</div>
 
-    <form>
-      <div class="control"><textarea  name='input_text' class="span12" id='input_text'></textarea></div></br>
+<p>This application helps you to stem the words in the given text. Currently supports only Malayalam. Note that this is very experimental and uses a rule based approach.</p>
 
-<div class="control"><input class="btn btn-primary"  type="submit" id="Stem_button" value="Stem"  name="action" style="width:12em;"/></div>
-        </br>
+<form>
+  <div class="form-group">
+    <textarea  name='input_text' class="form-control" id='input_text'></textarea>
+  </div>
+  <div class="form-group">
+    <input class="btn btn-default" type="submit" id="Stem_button" value="Stem" name="action"/>
+  </div>
 </form>
-<hr/>
-<div id="progress"></div>
-<div id="error"></div>
+
+<div id="progress" class="alert alert-info silpa-hide"></div>
+<div id="error" class="alert alert-danger silpa-hide"></div>
 <div id="result"></div>
 </div>
 {% endblock %}
