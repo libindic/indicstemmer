@@ -25,6 +25,10 @@ import codecs
 import os
 import normalizer
 
+def rreplace(s, old, new, occurrence):
+    li = s.rsplit(old, occurrence)
+    return new.join(li)
+
 
 class Stemmer:
     """
@@ -36,7 +40,26 @@ class Stemmer:
         self.rulesDict = None
         self.normalizer = normalizer.getInstance()
 
-    def stem(self, text):
+    def stem_hi(self,text):
+        print "hi"
+        suffixes = {1: ["ो", "े", "ू", "ु", "ी", "ि", "ा"],2: ["कर", "ाओ", "िए", "ाई", "ाए", "ने", "नी", "ना", "ते", "ीं", "ती", "ता", "ाँ", "ां", "ों", "ें"],3: ["ाकर", "ाइए", "ाईं", "ाया", "ेगी", "ेगा", "ोगी", "ोगे", "ाने", "ाना", "ाते", "ाती", "ाता", "तीं", "ाओं", "ाएं", "ुओं", "ुएं", "ुआं"],4: ["ाएगी", "ाएगा", "ाओगी", "ाओगे", "एंगी", "ेंगी", "एंगे", "ेंगे", "ूंगी", "ूंगा", "ातीं", "नाओं", "नाएं", "ताओं", "ताएं", "ियाँ", "ियों", "ियां"],5: ["ाएंगी", "ाएंगे", "ाऊंगी", "ाऊंगा", "ाइयाँ", "ाइयों", "ाइयां"]}
+        tag = [1,2,3,4,5]
+        tag.reverse()
+	dic_hi = {}
+        for word in text.split():
+            flag=0
+            for L in tag:
+                if flag==1:
+                    break
+                if len(word) > L + 1:
+                    for suf in suffixes[L]:
+                        if word.endswith(suf):
+                            word1 = rreplace(word,suf,'',1)
+			    dic_hi[word]=word1
+			    flag=1
+			    break
+        return dic_hi
+    def stem_ml(self, text):
         """
         :param text: unicode encoded malayalam string
         :returns: dictionary with words as the key and the stemmer result
@@ -69,6 +92,7 @@ class Stemmer:
             if(word_stemmed == ""):
                 word_stemmed = word
             result_dict[ word ] = word_stemmed
+        print result_dict
         return result_dict
 
     def LoadRules(self):
@@ -139,6 +163,65 @@ class Stemmer:
         returns info on the module
         """
         return "Malayalam Stemmer(Experimental)"
+    def stem(self,text,targetlang):
+        a={}
+        if targetlang=='hi_IN':
+            suffixes = {1: ["ो", "े", "ू", "ु", "ी", "ि", "ा"],2: ["कर", "ाओ", "िए", "ाई", "ाए", "ने", "नी", "ना", "ते", "ीं", "ती", "ता", "ाँ", "ां", "ों", "ें"],3: ["ाकर", "ाइए", "ाईं", "ाया", "ेगी", "ेगा", "ोगी", "ोगे", "ाने", "ाना", "ाते", "ाती", "ाता", "तीं", "ाओं", "ाएं", "ुओं", "ुएं", "ुआं"],4: ["ाएगी", "ाएगा", "ाओगी", "ाओगे", "एंगी", "ेंगी", "एंगे", "ेंगे", "ूंगी", "ूंगा", "ातीं", "नाओं", "नाएं", "ताओं", "ताएं", "ियाँ", "ियों", "ियां"],5: ["ाएंगी", "ाएंगे", "ाऊंगी", "ाऊंगा", "ाइयाँ", "ाइयों", "ाइयां"]}
+            tag = [1,2,3,4,5]
+            tag.reverse()
+	    dic_hi = {}
+            for word in text.split():
+                flag=0
+                for L in tag:
+                    if flag==1:
+                        break
+                    if len(word) > L + 1:
+                        for suf in suffixes[L]:
+                            if word.endswith(suf):
+                                word1 = rreplace(word,suf,'',1)
+			        dic_hi[word]=word1
+			        flag=1
+			        break
+                if flag==0:
+                     dic_hi[word]=word
+            return dic_hi
 
+
+	elif targetlang=='ml_IN':
+            """
+            :param text: unicode encoded malayalam string
+            :returns: dictionary with words as the key and the stemmer result
+            as the values. stems all the words in the given text and
+            returns a dictionary
+            """
+            text = self.normalizer.normalize(text)
+            if self.rulesDict is None:
+                self.rulesDict = self.LoadRules()
+            words = text.split(" ")
+            word_count = len(words)
+            result_dict = dict()
+            word_iter = 0
+            word = ""
+            while word_iter < word_count:
+                word = words[word_iter]
+                word = self.trim(word)
+                word = word.strip('!,.?:')
+                word_length = len(word)
+                suffix_pos_itr = 2
+                word_stemmed = ""
+                while suffix_pos_itr < word_length:
+                    suffix = word[suffix_pos_itr:word_length]
+                    if suffix in self.rulesDict:
+                        word_stemmed = word[0:suffix_pos_itr] + \
+                            self.rulesDict[suffix]
+                        break
+                    suffix_pos_itr = suffix_pos_itr+1
+                word_iter = word_iter+1
+                if(word_stemmed == ""):
+                    word_stemmed = word
+                result_dict[ word ] = word_stemmed
+                #print result_dict
+            return result_dict
+             
 def getInstance():
     return Stemmer()
