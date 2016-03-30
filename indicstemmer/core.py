@@ -25,6 +25,7 @@ import codecs
 import os
 import normalizer
 
+
 def rreplace(s, old, new, occurrence):
     li = s.rsplit(old, occurrence)
     return new.join(li)
@@ -35,8 +36,8 @@ class Stemmer:
     Instantiate class to get the methods
     """
     def __init__(self):
-        self.rules_file = os.path.join(os.path.dirname(__file__), \
-            'stemmer_ml.rules')
+        self.rules_file = os.path.join(
+            os.path.dirname(__file__), 'stemmer_ml.rules')
         self.rulesDict = None
         self.normalizer = normalizer.getInstance()
 
@@ -46,33 +47,36 @@ class Stemmer:
         line = []
         line_number = 0
         rule_number = 0
-        rules_file = codecs.open(self.rules_file, encoding='utf-8', \
-            errors='ignore')
+        rules_file = codecs.open(
+            self.rules_file, encoding='utf-8', errors='ignore')
         while 1:
-            line_number = line_number +1
-            text = unicode( rules_file.readline())
+            line_number = line_number + 1
+            text = unicode(rules_file.readline())
             if text == "":
                 break
             if text[0] == '#':
-                continue  #this is a comment - ignore
-            text = text.split("#")[0]   #remove the comment part of the line
-            line_number = line_number +1
-            line = text.strip()  # remove unwanted space
+                continue
+            #this is a comment - ignore
+            text = text.split("#")[0]
+            #remove the comment part of the line
+            line_number = line_number + 1
+            line = text.strip()
+            # remove unwanted space
             if(line == ""):
                 continue
             if(len(line.split("=")) != 2):
                 print "[Error] Syntax Error in the Rules. Line number: ", \
                     line_number
-                print "Line: "+ text
+                print "Line: " + text
                 continue
             lhs = line.split("=")[0].strip()
             rhs = line.split("=")[1].strip()
-            if(len(rhs)>0):
+            if(len(rhs) > 0):
                 if(lhs[0] == '"'):
-                    lhs = lhs[1:len(lhs)] # if the string is "quoted"
+                    lhs = lhs[1:len(lhs)]  # if the string is "quoted"
                 if(lhs[len(lhs)-1] == '"'):
-                    lhs = lhs[0:len(lhs)-1] # if the string is "quoted"
-            if(len(rhs)>0):
+                    lhs = lhs[0:len(lhs)-1]  # if the string is "quoted"
+            if(len(rhs) > 0):
                 if(rhs[0] == '"'):
                     rhs = rhs[1:len(rhs)]  # if the string is "quoted"
                 if(rhs[len(rhs)-1] == '"'):
@@ -83,10 +87,10 @@ class Stemmer:
         #print "Found ",rule_number, " rules."
         return rules_dict
 
-    def trim(self,word):
-        punctuations = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
-            '-', '+', '_', '=', '{', '}', '|' , ':', ';', '<', '>', '\,',
-            '.', '?']
+    def trim(self, word):
+        punctuations = ['~', '!', '@', '#', '$', '%',
+                        '^', '&', '*', '(', ')', '-', '+', '_', '=',
+                        '{', '}', '|', ':', ';', '<', '>', '\,', '.', '?']
         word = word.strip()
         index = len(word)-1
         while index > 0:
@@ -108,31 +112,41 @@ class Stemmer:
         returns info on the module
         """
         return "Malayalam Stemmer(Experimental)"
-    def stem(self,text,targetlang):
-        a={}
-        if targetlang=='hi_IN':
-            suffixes = {1: ["ो", "े", "ू", "ु", "ी", "ि", "ा"],2: ["कर", "ाओ", "िए", "ाई", "ाए", "ने", "नी", "ना", "ते", "ीं", "ती", "ता", "ाँ", "ां", "ों", "ें"],3: ["ाकर", "ाइए", "ाईं", "ाया", "ेगी", "ेगा", "ोगी", "ोगे", "ाने", "ाना", "ाते", "ाती", "ाता", "तीं", "ाओं", "ाएं", "ुओं", "ुएं", "ुआं","ाएँ"],4: ["ाएगी", "ाएगा", "ाओगी", "ाओगे", "एंगी", "ेंगी", "एंगे", "ेंगे", "ूंगी", "ूंगा", "ातीं", "नाओं", "नाएं", "ताओं", "ताएं", "ियाँ", "ियों", "ियां"],5: ["ाएंगी", "ाएंगे", "ाऊंगी", "ाऊंगा", "ाइयाँ", "ाइयों", "ाइयां"]}
-            tag = [1,2,3,4,5]
+
+    def stem(self, text, targetlang):
+        a = {}
+        if targetlang == 'hi_IN':
+            suffixes = {1: ["ो", "े", "ू", "ु", "ी", "ि", "ा"],
+                        2: ["कर", "ाओ", "िए", "ाई", "ाए", "ने", "नी", "ना",
+                            "ते", "ीं", "ती", "ता", "ाँ", "ां", "ों", "ें"],
+                        3: ["ाकर", "ाइए", "ाईं", "ाया", "ेगी", "ेगा",
+                            "ोगी", "ोगे", "ाने", "ाना", "ाते", "ाती", "ाता",
+                            "तीं", "ाओं", "ाएं", "ुओं", "ुएं", "ुआं", "ाएँ"],
+                        4: ["ाएगी", "ाएगा", "ाओगी", "ाओगे", "एंगी",
+                            "ेंगी", "एंगे", "ेंगे", "ूंगी",
+                            "ूंगा", "ातीं", "नाओं",
+                            "नाएं", "ताओं", "ताएं", "ियाँ", "ियों", "ियां"],
+                        5: ["ाएंगी", "ाएंगे", "ाऊंगी", "ाऊंगा",
+                            "ाइयाँ", "ाइयों", "ाइयां"]}
+            tag = [1, 2, 3, 4, 5]
             tag.reverse()
-	    dic_hi = {}
+            dic_hi = {}
             for word in text.split():
-                flag=0
+                flag = 0
                 for L in tag:
-                    if flag==1:
+                    if flag == 1:
                         break
                     if len(word) > L + 1:
                         for suf in suffixes[L]:
                             if word.endswith(suf):
-                                word1 = rreplace(word,suf,'',1)
-			        dic_hi[word]=word1
-			        flag=1
-			        break
-                if flag==0:
-                     dic_hi[word]=word
+                                word1 = rreplace(word, suf, '', 1)
+                                dic_hi[word] = word1
+                                flag = 1
+                                break
+                if flag == 0:
+                    dic_hi[word] = word
             return dic_hi
-
-
-	elif targetlang=='ml_IN':
+        elif targetlang == 'ml_IN':
             """
             :param text: unicode encoded malayalam string
             :returns: dictionary with words as the key and the stemmer result
@@ -164,9 +178,10 @@ class Stemmer:
                 word_iter = word_iter+1
                 if(word_stemmed == ""):
                     word_stemmed = word
-                result_dict[ word ] = word_stemmed
+                result_dict[word] = word_stemmed
                 #print result_dict
             return result_dict
-             
+
+
 def getInstance():
     return Stemmer()
