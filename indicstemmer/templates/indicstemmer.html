@@ -9,10 +9,11 @@
       var idProgress = $('#progress'),
         idResult = $('#result'),
         idError = $('#error'),
+        targetlang = $("select[name=lang]", 'form').val(),
         text= $("textarea[name=input_text]", 'form').val(),
         jsonRequest = {
           method:  "indicstemmer.stem",
-          params: [text],
+          params: [text,targetlang],
           id: ""
         };
 
@@ -57,14 +58,23 @@
 </div>
 
 <p>This application helps you to stem the words in the given text. Currently supports only Malayalam. Note that this is very experimental and uses a rule based approach.</p>
-
+<form action="" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="lang">Language</label>
+        <div class="col-sm-3">
+            <select id="lang" name="lang" class="form-control">
+                <option value="ml_IN">Malayalam</option>
+                <option value="hi_IN">Hindi</option>                
+            </select>
+	</div>
+           <input type="submit" id="Stem_button" value="Stem"  name="action" class="btn btn-default pull-right"/>
+     </div>
+</form>
 <form>
   <div class="form-group">
     <textarea  name='input_text' class="form-control ime" id='input_text'></textarea>
   </div>
-  <div class="form-group">
-    <input class="btn btn-default" type="submit" id="Stem_button" value="Stem" name="action"/>
-  </div>
+
 </form>
 
 <div id="progress" class="alert alert-info silpa-hide"></div>
