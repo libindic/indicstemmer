@@ -114,8 +114,41 @@ class Stemmer:
         return "Malayalam Stemmer(Experimental)"
 
     def stem(self, text, targetlang):
-        a = {}
-        if targetlang == 'hi_IN':
+        if targetlang == 'pu_IN':
+            suffixes = {1: ["ੀ ਆਂ ", "िਆਂ", "ੂਆਂ", "ੀ ਏ", "ੀ ਓ"],
+                        2: ["ਈ", "ੇ", "ू", "ु", "ी",
+                            "ि", "ा", "ੋ", "ਜ", "ਜ਼", "ਸ"],
+                        3: ["िਓ", "ਾ ਂ", "ੀ ਂ", "ੋ ਂ"],
+                        4: ["ਿਉ ਂ", "ਵਾਂ", "ੀ ਆ", "िਆ", "ਈਆ"],
+                        5: ["ੀ ਆ", "िਆ", "ਈਆ"]}
+            tag = [1, 2, 3, 4, 5]
+            tag.reverse()
+            dic_hi = {}
+            for word in text.split():
+                flag = 0
+                for L in tag:
+                    if flag == 1:
+                        break
+                    if len(word) > L + 1:
+                        if L == 5 or L == 1:
+                            for suf in suffixes[L]:
+                                if word.endswith(suf):
+                                    suf = suf.decode("utf-8")
+                                    word1 = rreplace(word, suf[1:], '', 1)
+                                    dic_hi[word] = word1
+                                    flag = 1
+                                    break
+                        else:
+                            for suf in suffixes[L]:
+                                if word.endswith(suf):
+                                    word1 = rreplace(word, suf, '', 1)
+                                    dic_hi[word] = word1
+                                    flag = 1
+                                    break
+                if flag == 0:
+                    dic_hi[word] = word
+            return dic_hi
+        elif targetlang == 'hi_IN':
             suffixes = {1: ["ो", "े", "ू", "ु", "ी", "ि", "ा"],
                         2: ["कर", "ाओ", "िए", "ाई", "ाए", "ने", "नी", "ना",
                             "ते", "ीं", "ती", "ता", "ाँ", "ां", "ों", "ें"],
