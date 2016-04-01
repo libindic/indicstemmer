@@ -126,6 +126,7 @@ class Stemmer:
             dic_hi = {}
             for word in text.split():
                 flag = 0
+                word = word.decode("utf-8")
                 for L in tag:
                     if flag == 1:
                         break
@@ -141,6 +142,7 @@ class Stemmer:
                         else:
                             for suf in suffixes[L]:
                                 if word.endswith(suf):
+                                    suf = suf.decode("utf-8")
                                     word1 = rreplace(word, suf, '', 1)
                                     dic_hi[word] = word1
                                     flag = 1
@@ -166,11 +168,13 @@ class Stemmer:
             dic_hi = {}
             for word in text.split():
                 flag = 0
+                word = word.decode("utf-8")
                 for L in tag:
                     if flag == 1:
                         break
                     if len(word) > L + 1:
                         for suf in suffixes[L]:
+                            suf = suf.decode("utf-8")
                             if word.endswith(suf):
                                 word1 = rreplace(word, suf, '', 1)
                                 dic_hi[word] = word1
