@@ -65,9 +65,9 @@ class Stemmer:
             if(line == ""):
                 continue
             if(len(line.split("=")) != 2):
-                print "[Error] Syntax Error in the Rules. Line number: ", \
-                    line_number
-                print "Line: " + text
+                print("[Error] Syntax Error. Line number: ")
+                print(line_number)
+                print("Line: " + text)
                 continue
             lhs = line.split("=")[0].strip()
             rhs = line.split("=")[1].strip()
