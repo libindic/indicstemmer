@@ -42,7 +42,7 @@ class Stemmer:
         self.normalizer = normalizer.getInstance()
 
     def LoadRules(self):
-        #print "Loading the rules..."
+        # print "Loading the rules..."
         rules_dict = dict()
         line = []
         line_number = 0
@@ -56,9 +56,9 @@ class Stemmer:
                 break
             if text[0] == '#':
                 continue
-            #this is a comment - ignore
+            # this is a comment - ignore
             text = text.split("#")[0]
-            #remove the comment part of the line
+            # remove the comment part of the line
             line_number = line_number + 1
             line = text.strip()
             # remove unwanted space
@@ -83,8 +83,8 @@ class Stemmer:
                     rhs = rhs[0:len(rhs)-1]     # if the string is "quoted"
             rule_number = rule_number+1
             rules_dict[lhs] = rhs
-            #print "[", rule_number ,"] " +lhs + " : " +rhs
-        #print "Found ",rule_number, " rules."
+            # print "[", rule_number ,"] " +lhs + " : " +rhs
+        # print "Found ",rule_number, " rules."
         return rules_dict
 
     def trim(self, word):
@@ -216,7 +216,7 @@ class Stemmer:
                 if(word_stemmed == ""):
                     word_stemmed = word
                 result_dict[word] = word_stemmed
-                #print result_dict
+                # print result_dict
             return result_dict
 
 
