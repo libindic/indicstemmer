@@ -16,7 +16,7 @@ class TestIndicStemmer(unittest.TestCase):
                 u"തുറക്കുന്ന", "ml_IN")[u"തുറക്കുന്ന"])
         self.assertEqual(
             u"खा", self.instance.stem(
-                "खाएगे", "hi_IN")[u"खाएंगे"])
+                "खाएंगे", "hi_IN")[u"खाएंगे"]))
         self.assertEqual(
             u"खेल", self.instance.stem(
                 "खेलेंगे", "hi_IN")[u"खेलेंगे"])
