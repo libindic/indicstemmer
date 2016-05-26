@@ -43,7 +43,7 @@ class Malayalam:
         self.dictionary = [x.strip().decode('utf-8')
                            for x in self.dictionary]
 
-    def normalize(self, word):
+    def singleencode(self, word):
         '''
         Normalize word to single encoding.
         '''
@@ -81,7 +81,7 @@ class Malayalam:
                 result = self.trim(word).decode('utf-8')
             except:
                 result = word
-            result = self.normalize(result)
+            result = self.singleencode(result)
             word = result
             if result in self.dictionary:
                 result_dict[word] = result

@@ -40,7 +40,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിനെ': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
@@ -73,7 +73,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിനോട്': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
@@ -106,7 +106,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിന്': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
@@ -138,7 +138,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിനാൽ': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
@@ -172,7 +172,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിന്റേത്': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
@@ -203,7 +203,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാട്ടിൽ': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
@@ -238,7 +238,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടും': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
@@ -270,7 +270,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'മൊല്ലാക്കമാർ': u'മൊല്ലാക്ക',
                                          })
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
@@ -283,7 +283,7 @@ class MalayalamStemmerTest(TestCase):
         words = collections.OrderedDict({u'അവിടേക്ക്': u'അവിടെ'})
         self.skip("Will Fail")
         for word, expected in words.items():
-            word = self.stemmer.normalize(word)
+            word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print expected, obtained
