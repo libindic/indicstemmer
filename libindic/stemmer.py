@@ -98,7 +98,7 @@ class Malayalam:
                 found = False
                 counter = 1
                 if self.verbose:
-                    print result
+                    print(result)
                 if result in self.dictionary:
                     result_dict[word] = result
                     break
@@ -106,8 +106,7 @@ class Malayalam:
                     suffix = result[counter:]  # Right to left suffix stripping
                     if suffix in self.rulesDict:
                         if self.verbose:
-                            print "\t Satisfying rule found : ", suffix,
-                            " = ", self.rulesDict[suffix]
+                            print("\t Satisfying rule found : ", suffix, " = ", self.rulesDict[suffix])
                         result = result[:counter] + self.rulesDict[suffix]
                         # A satisfying rule found, continue stemming.
                         found = True
@@ -130,7 +129,10 @@ class Malayalam:
                                  errors='ignore')
         while 1:
             line_number = line_number + 1
-            text = unicode(rules_file.readline())
+            try:
+                text = unicode(rules_file.readline())
+            except:
+                text = rules_file.readline()
             if text == "":
                 break
             if text[0] == '#':
@@ -141,9 +143,8 @@ class Malayalam:
             if(line == ""):
                 continue
             if(len(line.split("=")) != 2):
-                print "[Error] Syntax Error in the Rules. Line number: ", \
-                    line_number
-                print "Line: " + text
+                print("[Error] Syntax Error in the Rules. Line number: ", line_number)
+                print("Line: " + text)
                 continue
             lhs = line.split("=")[0].strip()
             rhs = line.split("=")[1].strip()

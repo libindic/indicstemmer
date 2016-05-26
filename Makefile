@@ -1,6 +1,5 @@
 travis:
-	nosetests -s --with-coverage --cover-package=indicstemmer
-	flake8 indicstemmer
+	nosetests -s --with-coverage --cover-package=libindic
 
 clean:
 	find . -name "*.pyc" -exec rm -vf {} \;
@@ -8,6 +7,3 @@ clean:
 
 tox:
 	tox
-
-flake:
-	flake8 silpa tests
