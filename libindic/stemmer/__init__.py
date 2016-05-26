@@ -33,11 +33,11 @@ class Malayalam:
 
     def __init__(self, verbose=False):
         self.verbose = verbose
-        self.rules_file = os.path.join(os.path.dirname(__file__), 'ml.rules')
+        self.rules_file = os.path.join(os.path.dirname(__file__), 'data/ml.rules')
         self.rulesDict = None
         self.normalizer = normalizer.getInstance()
         self.dictionary_file = open(os.path.join(
-            os.path.dirname(__file__), 'rootwords.txt'))
+            os.path.dirname(__file__), 'data/rootwords.txt'))
         self.dictionary = self.dictionary_file.readlines()
         self.dictionary_file.close()
         self.dictionary = [x.strip().decode('utf-8')
