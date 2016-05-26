@@ -83,7 +83,6 @@ class Malayalam:
                 result = word
             result = self.normalize(result)
             word = result
-            print {word: 'adsf'}
             if result in self.dictionary:
                 result_dict[word] = result
                 word_iter += 1
