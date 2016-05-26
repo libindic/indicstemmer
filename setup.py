@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-name = "indicstemmer"
+name = "stemmer"
 
 setup(
     name=name,
@@ -16,10 +16,11 @@ setup(
     Note that this is very experimental and uses a rule based approach.
 
     """,
+    namespace_packages=['libindic'],
     packages=find_packages(),
     include_package_data=True,
     setup_requires=['setuptools-git'],
-    install_requires=['setuptools','normalizer'],
-    test_suite="tests",
+    install_requires=['setuptools', 'normalizer'],
+    test_suite="libindic.stemmer.tests",
     zip_safe=False,
 )
