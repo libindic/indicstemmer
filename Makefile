@@ -1,9 +1,7 @@
 travis:
-	nosetests -s --with-coverage --cover-package=libindic
-
+	python setup.py test --coverage \
+		--coverage-package-name=stemmer
+	flake8 --max-complexity 10 libindic/stemmer
 clean:
-	find . -name "*.pyc" -exec rm -vf {} \;
-	find -name __pycache__ -delete
-
-tox:
-	tox
+	find . -iname "*.pyc" -exec rm -vf {} \;
+	find . -iname "__pycache__" -delete

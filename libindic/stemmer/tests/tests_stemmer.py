@@ -43,7 +43,7 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
 
     def test_conjuctive(self):
@@ -76,7 +76,7 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
 
     def test_dative(self):
@@ -109,7 +109,7 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
 
     def test_instrumental(self):
@@ -141,7 +141,7 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
 
     def test_possessive(self):
@@ -175,7 +175,7 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
 
     def test_locative(self):
@@ -206,7 +206,7 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
 
     def test_and(self):
@@ -241,7 +241,7 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
 
     def test_plurals(self):
@@ -273,7 +273,7 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
 
     def test_failures(self):
@@ -286,5 +286,5 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print expected, obtained
+                print(expected, obtained)
             assert obtained == expected
