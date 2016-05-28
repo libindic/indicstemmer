@@ -109,8 +109,6 @@ class MalayalamStemmerTest(TestCase):
                 print expected, obtained
             assert obtained == expected
 
-
-
     def test_instrumental(self):
         '''
         Instrumental - പ്രയോജിക

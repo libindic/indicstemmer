@@ -33,7 +33,8 @@ class Malayalam:
 
     def __init__(self, verbose=False):
         self.verbose = verbose
-        self.rules_file = os.path.join(os.path.dirname(__file__), 'data/ml.rules')
+        self.rules_file = os.path.join(
+            os.path.dirname(__file__), 'data/ml.rules')
         self.rulesDict = None
         self.normalizer = normalizer.getInstance()
         self.dictionary_file = open(os.path.join(
@@ -106,7 +107,11 @@ class Malayalam:
                     suffix = result[counter:]  # Right to left suffix stripping
                     if suffix in self.rulesDict:
                         if self.verbose:
-                            print("\t Satisfying rule found : ", suffix, " = ", self.rulesDict[suffix])
+                            print(
+                                "\t Satisfying rule found : ",
+                                suffix,
+                                " = ",
+                                self.rulesDict[suffix])
                         result = result[:counter] + self.rulesDict[suffix]
                         # A satisfying rule found, continue stemming.
                         found = True
@@ -127,7 +132,7 @@ class Malayalam:
         rule_number = 0
         rules_file = codecs.open(self.rules_file, encoding='utf-8',
                                  errors='ignore')
-        while 1:
+        while True:
             line_number = line_number + 1
             try:
                 text = unicode(rules_file.readline())
@@ -143,7 +148,9 @@ class Malayalam:
             if(line == ""):
                 continue
             if(len(line.split("=")) != 2):
-                print("[Error] Syntax Error in the Rules. Line number: ", line_number)
+                print(
+                    "[Error] Syntax Error in the Rules. Line number: ",
+                    line_number)
                 print("Line: " + text)
                 continue
             lhs = line.split("=")[0].strip()
