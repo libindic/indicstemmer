@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from testtools import TestCase
-from libindic.stemmer import Malayalam as Stemmer
+from libindic import stemmer
 import collections
 
 
@@ -10,7 +10,7 @@ class MalayalamStemmerTest(TestCase):
 
     def setUp(self):
         super(MalayalamStemmerTest, self).setUp()
-        self.stemmer = Stemmer()
+        self.stemmer = stemmer.Malayalam()
         self.verbosity = False
 
     def test_accusative(self):
@@ -43,7 +43,10 @@ class MalayalamStemmerTest(TestCase):
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
-                print(expected, obtained)
+                print("\t", expected)
+                print("\t", obtained)
+                print("\t", type(expected))
+                print("\t", type(obtained))
             assert obtained == expected
 
     def test_conjuctive(self):

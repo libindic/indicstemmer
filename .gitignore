@@ -67,3 +67,5 @@ target/
 sandbox/
 /cover/
 /.testrepository/
+
+*.bak

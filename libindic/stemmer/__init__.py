@@ -21,7 +21,6 @@
 # santhosh.thottingal@gmail.com
 # URL: http://www.smc.org.in
 
-import codecs
 import os
 import normalizer
 
@@ -41,19 +40,22 @@ class Malayalam:
             os.path.dirname(__file__), 'data/rootwords.txt'))
         self.dictionary = self.dictionary_file.readlines()
         self.dictionary_file.close()
-        self.dictionary = [x.strip().decode('utf-8')
-                           for x in self.dictionary]
+        try:
+            self.dictionary = [x.strip().decode('utf-8')
+                               for x in self.dictionary]
+        except:
+            self.dictionary = [x.strip() for x in self.dictionary]
 
     def singleencode(self, word):
         '''
         Normalize word to single encoding.
         '''
-        replace = {u'\u0d15\u0d4d\u200d': u'\u0d7f',
-                   u'\u0d23\u0d4d\u200d': u'\u0d7a',
-                   u'\u0d28\u0d4d\u200d': u'\u0d7b',
-                   u'\u0d30\u0d4d\u200d': u'\u0d7c',
-                   u'\u0d32\u0d4d\u200d': u'\u0d7d',
-                   u'\u0d33\u0d4d\u200d': u'\u0d7e'}
+        replace = {'\\u0d15\\u0d4d\\u200d': '\\u0d7f',
+                   '\\u0d23\\u0d4d\\u200d': '\\u0d7a',
+                   '\\u0d28\\u0d4d\\u200d': '\\u0d7b',
+                   '\\u0d30\\u0d4d\\u200d': '\\u0d7c',
+                   '\\u0d32\\u0d4d\\u200d': '\\u0d7d',
+                   '\\u0d33\\u0d4d\\u200d': '\\u0d7e'}
         for character in replace:
             word = word.replace(character, replace[character])
         return word
@@ -76,8 +78,6 @@ class Malayalam:
             word = words[word_iter]
             word = self.trim(word)
             word = word.strip('!,.?:')
-            word_length = len(word)
-            suffix_pos_itr = 2
             try:
                 result = self.trim(word).decode('utf-8')
             except:
@@ -107,11 +107,11 @@ class Malayalam:
                     suffix = result[counter:]  # Right to left suffix stripping
                     if suffix in self.rulesDict:
                         if self.verbose:
-                            print(
+                            print((
                                 "\t Satisfying rule found : ",
                                 suffix,
                                 " = ",
-                                self.rulesDict[suffix])
+                                self.rulesDict[suffix]))
                         result = result[:counter] + self.rulesDict[suffix]
                         # A satisfying rule found, continue stemming.
                         found = True
@@ -127,46 +127,28 @@ class Malayalam:
 
     def LoadRules(self):
         rules_dict = dict()
-        line = []
-        line_number = 0
-        rule_number = 0
-        rules_file = codecs.open(self.rules_file, encoding='utf-8',
-                                 errors='ignore')
-        while True:
-            line_number = line_number + 1
+        rules_file_object = open(self.rules_file)
+        rules_text = rules_file_object.readlines()
+        rules_file_object.close()
+        rules_dict = {}
+        for line in rules_text:
+            if line == '' or line[0] == '#':
+                continue
+            items = line.strip().split('=')
             try:
-                text = unicode(rules_file.readline())
+                try:
+                    lhs = items[0].strip().strip(
+                        '"').strip("'").decode('utf-8')
+                    rhs = items[1].strip().strip(
+                        '"').strip("'").decode('utf-8')
+                except:
+                    lhs = items[0].strip().strip('"').strip("'")
+                    rhs = items[1].strip().strip('"').strip("'")
+                lhs = self.singleencode(lhs)
+                rhs = self.singleencode(rhs)
+                rules_dict[lhs] = rhs
             except:
-                text = rules_file.readline()
-            if text == "":
-                break
-            if text[0] == '#':
-                continue  # this is a comment - ignore
-            text = text.split("#")[0]  # remove the comment part of the line
-            line_number = line_number + 1
-            line = text.strip()  # remove unwanted space
-            if(line == ""):
                 continue
-            if(len(line.split("=")) != 2):
-                print(
-                    "[Error] Syntax Error in the Rules. Line number: ",
-                    line_number)
-                print("Line: " + text)
-                continue
-            lhs = line.split("=")[0].strip()
-            rhs = line.split("=")[1].strip()
-            if(len(rhs) > 0):
-                if(lhs[0] == '"'):
-                    lhs = lhs[1:len(lhs)]  # if the string is "quoted"
-                if(lhs[len(lhs) - 1] == '"'):
-                    lhs = lhs[0:len(lhs) - 1]  # if the string is "quoted"
-            if(len(rhs) > 0):
-                if(rhs[0] == '"'):
-                    rhs = rhs[1:len(rhs)]  # if the string is "quoted"
-                if(rhs[len(rhs) - 1] == '"'):
-                    rhs = rhs[0:len(rhs) - 1]     # if the string is "quoted"
-            rule_number = rule_number + 1
-            rules_dict[lhs] = rhs
         return rules_dict
 
     def trim(self, word):
