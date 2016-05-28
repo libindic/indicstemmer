@@ -22,7 +22,6 @@
 # URL: http://www.smc.org.in
 
 import os
-import normalizer
 
 
 class Malayalam:
@@ -35,7 +34,6 @@ class Malayalam:
         self.rules_file = os.path.join(
             os.path.dirname(__file__), 'data/ml.rules')
         self.rulesDict = None
-        self.normalizer = normalizer.getInstance()
         self.dictionary_file = open(os.path.join(
             os.path.dirname(__file__), 'data/rootwords.txt'))
         self.dictionary = self.dictionary_file.readlines()
