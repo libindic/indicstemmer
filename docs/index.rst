@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to LibIndic Stemmer's documentation!
-========================================
+============================================
 
 
 LibIndic's stemmer module may be used to extract stems of the words in a
