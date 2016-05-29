@@ -23,6 +23,8 @@
 
 import os
 
+import marisa_trie
+
 
 class Malayalam:
     """
@@ -38,10 +40,11 @@ class Malayalam:
         self.dictionary = self.dictionary_file.readlines()
         self.dictionary_file.close()
         try:
-            self.dictionary = [x.strip().decode('utf-8')
-                               for x in self.dictionary]
+            self.dictionary = marisa_trie.Trie([x.strip().decode('utf-8')
+                                                for x in self.dictionary])
         except:
-            self.dictionary = [x.strip() for x in self.dictionary]
+            self.dictionary = marisa_trie.Trie(
+                [x.strip() for x in self.dictionary])
 
     def singleencode(self, word):
         '''
