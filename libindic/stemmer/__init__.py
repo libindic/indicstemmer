@@ -62,10 +62,9 @@ class Malayalam:
 
     def stem(self, text):
         """
-        :param text: unicode encoded malayalam string
-        :returns: dictionary with words as the key and the stemmer result
-        as the values. stems all the words in the given text and
-        returns a dictionary
+        :param text: Malayalam string
+        :returns: Dictionary with words of the string as keys and their \
+        corresponding stems as values.
         """
         if self.rulesDict is None:
             self.rulesDict = self.LoadRules()
