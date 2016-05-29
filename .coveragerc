@@ -1,0 +1,5 @@
+[report]
+exclude_lines = 
+    def get_module_name(self):
+    def get_info(self):
+    def getInstance():
