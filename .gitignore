@@ -69,3 +69,4 @@ sandbox/
 /.testrepository/
 
 *.bak
+virtualenvs/
