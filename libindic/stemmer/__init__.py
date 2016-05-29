@@ -73,6 +73,7 @@ class Malayalam:
         word = ""
         while word_iter < word_count:
             word = words[word_iter]
+            original_word = words[word_iter]
             word = self.trim(word)
             word = word.strip('!,.?:')
             try:
@@ -82,7 +83,7 @@ class Malayalam:
             result = self.singleencode(result)
             word = result
             if result in self.dictionary:
-                result_dict[word] = result
+                result_dict[original_word] = result
                 word_iter += 1
                 continue
             completed = False
@@ -96,7 +97,7 @@ class Malayalam:
                 found = False
                 counter = 1
                 if result in self.dictionary:
-                    result_dict[word] = result
+                    result_dict[original_word] = result
                     break
                 while counter < len(result):
                     suffix = result[counter:]  # Right to left suffix stripping
@@ -111,7 +112,7 @@ class Malayalam:
                 if not found:
                     completed = True
             word_iter += 1
-            result_dict[word] = result
+            result_dict[original_word] = result
         return result_dict
 
     def LoadRules(self):
