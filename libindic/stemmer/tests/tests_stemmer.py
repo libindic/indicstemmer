@@ -37,7 +37,9 @@ class MalayalamStemmerTest(TestCase):
                                          u'പയ്യിനെ': u'പയ്യ്',
                                          u'കല്ലിനെ': u'കല്ല്',
                                          u'രാമുവിനെ': u'രാമു',
-                                         u'കാടിനെ': u'കാട്'
+                                         u'കാടിനെ': u'കാട്',
+                                         u'രാമൻ': u'രാമൻ',
+                                         u'രാമൻ.': u'രാമൻ'
                                          })
         for word, expected in words.items():
             word = self.stemmer.singleencode(word)
