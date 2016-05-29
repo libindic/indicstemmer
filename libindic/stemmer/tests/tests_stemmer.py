@@ -38,7 +38,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'കല്ലിനെ': u'കല്ല്',
                                          u'രാമുവിനെ': u'രാമു',
                                          u'കാടിനെ': u'കാട്',
-                                         u'രാമൻ': u'രാമൻ',
+                                         u'മകൾ': u'മകൾ',
                                          u'രാമൻ.': u'രാമൻ'
                                          })
         for word, expected in words.items():
