@@ -29,8 +29,7 @@ class Malayalam:
     Instantiate class to get the methods
     """
 
-    def __init__(self, verbose=False):
-        self.verbose = verbose
+    def __init__(self):
         self.rules_file = os.path.join(
             os.path.dirname(__file__), 'data/ml.rules')
         self.rulesDict = None
@@ -96,20 +95,12 @@ class Malayalam:
                 # each intermediate form of word
                 found = False
                 counter = 1
-                if self.verbose:
-                    print(result)
                 if result in self.dictionary:
                     result_dict[word] = result
                     break
                 while counter < len(result):
                     suffix = result[counter:]  # Right to left suffix stripping
                     if suffix in self.rulesDict:
-                        if self.verbose:
-                            print((
-                                "\t Satisfying rule found : ",
-                                suffix,
-                                " = ",
-                                self.rulesDict[suffix]))
                         result = result[:counter] + self.rulesDict[suffix]
                         # A satisfying rule found, continue stemming.
                         found = True
