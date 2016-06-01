@@ -1,8 +1,8 @@
 # LibIndic Stemmer
 
 
-[![Build Status](https://travis-ci.org/balasankarc/indicstemmer.svg?branch=multilevel)](https://travis-ci.org/balasankarc/indicstemmer) 
-[![Coverage Status](https://coveralls.io/repos/github/balasankarc/indicstemmer/badge.svg?branch=multilevel)](https://coveralls.io/github/balasankarc/indicstemmer?branch=multilevel)
+[![Build Status](https://travis-ci.org/libindic/indicstemmer.svg?branch=master)](https://travis-ci.org/libindic/indicstemmer)
+[![Coverage Status](https://coveralls.io/repos/github/libindic/indicstemmer/badge.svg?branch=master)](https://coveralls.io/github/libindic/indicstemmer?branch=master)
 
 
 LibIndic's stemmer module may be used to extract stems of the words in a
