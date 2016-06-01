@@ -1,8 +1,11 @@
 [report]
 exclude_lines = 
     def get_module_name(self):
-    def get_info(self):
-    def getInstance():
     return "Stemmer"
+    def get_info(self):
     return "Malayalam Stemmer\(Experimental\)"
+    def getInstance(target_language):
+    if target_language.lower\(\) == \'ml_in\':
     return Malayalam()
+    class Hindi:
+    class Punjabi:
