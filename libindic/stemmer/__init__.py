@@ -217,14 +217,21 @@ class Punjabi:
     Punjabi Stemmer Class
     '''
 
+    def __init__(self):
+        self.suffixes = {1: ["ੀ ਆਂ ", "िਆਂ", "ੂਆਂ", "ੀ ਏ", "ੀ ਓ"],
+                         2: ["ਈ", "ੇ", "ू", "ु", "ी",
+                             "ि", "ा", "ੋ", "ਜ", "ਜ਼", "ਸ"],
+                         3: ["िਓ", "ਾ ਂ", "ੀ ਂ", "ੋ ਂ"],
+                         4: ["ਿਉ ਂ", "ਵਾਂ", "ੀ ਆ", "िਆ", "ਈਆ"],
+                         5: ["ੀ ਆ", "िਆ", "ਈਆ"]}
+
+    def gen_replacement(self, suf, L):
+        if L == 1 or L == 5:
+            return suf[1:]
+        return suf
+
     def stem(self, text):
-        suffixes = {1: ["ੀ ਆਂ ", "िਆਂ", "ੂਆਂ", "ੀ ਏ", "ੀ ਓ"],
-                    2: ["ਈ", "ੇ", "ू", "ु", "ी",
-                        "ि", "ा", "ੋ", "ਜ", "ਜ਼", "ਸ"],
-                    3: ["िਓ", "ਾ ਂ", "ੀ ਂ", "ੋ ਂ"],
-                    4: ["ਿਉ ਂ", "ਵਾਂ", "ੀ ਆ", "िਆ", "ਈਆ"],
-                    5: ["ੀ ਆ", "िਆ", "ਈਆ"]}
-        tag = [1, 2, 3, 4, 5]
+        tag = self.suffixes.keys()
         tag.reverse()
         dic_hi = {}
         for word in text.split():
@@ -234,22 +241,16 @@ class Punjabi:
                 if flag == 1:
                     break
                 if len(word) > L + 1:
-                    if L == 5 or L == 1:
-                        for suf in suffixes[L]:
-                            suf = suf.decode("utf-8")
-                            if word.endswith(suf):
-                                word1 = rreplace(word, suf[1:], '', 1)
-                                dic_hi[word] = word1
-                                flag = 1
-                                break
-                    else:
-                        for suf in suffixes[L]:
-                            suf = suf.decode("utf-8")
-                            if word.endswith(suf):
-                                word1 = rreplace(word, suf, '', 1)
-                                dic_hi[word] = word1
-                                flag = 1
-                                break
+                    for suf in self.suffixes[L]:
+                        suf = suf.decode("utf-8")
+                        if word.endswith(suf):
+                            word1 = rreplace(word,
+                                             self.gen_replacement(suf,
+                                                                  L),
+                                             '', 1)
+                            dic_hi[word] = word1
+                            flag = 1
+                            break
             if flag == 0:
                 dic_hi[word] = word
         return dic_hi
