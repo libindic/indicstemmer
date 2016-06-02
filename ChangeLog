@@ -1,0 +1,65 @@
+CHANGES
+=======
+
+* Test for root word - Handle False positives
+* Add tests for punctuation and existing root word
+* Use the original word given as input for dictionary keys
+* Fix coverage exclusion
+* Remove print commands used for development
+* Configure coverage to exclude package-info functions
+* Try python 3.5-dev
+* Fix package name
+* Coverage Badge
+* Fix travis
+* Use custom normalizer
+* Python3+Travis+Flake8
+* Add normalizer to requirements
+* Add Coverage badge to readme
+* Flake8
+* Use pbr, polish travis
+* Remove backup file
+* Autopep8
+* Group the data files to a single folder
+* Fix directory structure
+* Use non-conflicting method name
+* Travis status on readme
+* Make travis run - Temporary
+* Use testtools
+* Travis
+* Add tests
+* Iterative suffix stripping with a rootword corpus
+* Change to libindic.stemmer.language model
+* Removing python3.3 from travis
+* Meet python3 standards
+* Meeting flake8 standards
+* Adding normalizer to travis test
+* punjabi stemmer , template and tests modified
+* Adding punjabi stemmer
+* Changes to meet pep8 standards
+* Changes to meet pep8 standards
+* Travis Integration Added
+* Adding more suffixes
+* Adding tests for hindi
+* Removing unnecessary portion
+* Adding code for hindi stem
+* Adding hindi in the template
+* Adding Hindi stemmer
+* add jquery.ime
+* new ui
+* javascript code cleaning
+* added normalizer as dependancy
+
+v0.1
+----
+
+* removing unwanted imports, variables
+* remove previous result
+* uupdating __init__.py for the rename
+* added a README
+* adding tests
+* ignoring vim swp files
+* addded docs
+* renamed module to indic stemmer
+* normalize using normalizer module
+* proper version number
+* initial commit
