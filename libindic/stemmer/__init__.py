@@ -89,8 +89,8 @@ class Malayalam:
                 result_dict[original_word] = result
                 word_iter += 1
                 continue
-            completed = False
-            while not completed:
+            found = True
+            while found:
                 # For multilevel inflection handling.
                 # Repeats stemming until
                 # (i) a mis-hit in rules or
@@ -112,8 +112,6 @@ class Malayalam:
                     counter = counter + 1
                 # Stop stemming, no matching rules found - probably a root
                 # word.
-                if not found:
-                    completed = True
             word_iter += 1
             result_dict[original_word] = result
         return result_dict
