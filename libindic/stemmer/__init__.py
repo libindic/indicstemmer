@@ -34,10 +34,10 @@ class Malayalam:
 
     def __init__(self):
         self.rules_file = os.path.join(
-            os.path.dirname(__file__), 'data/ml.rules')
+            os.path.dirname(__file__), 'data/ml_rules.txt')
         self.rulesDict = None
         self.dictionary_file = open(os.path.join(
-            os.path.dirname(__file__), 'data/rootwords.txt'))
+            os.path.dirname(__file__), 'data/ml_rootwords.txt'))
         self.dictionary = self.dictionary_file.readlines()
         self.dictionary_file.close()
         try:
