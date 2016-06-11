@@ -285,11 +285,15 @@ class MalayalamStemmerTest(TestCase):
         '''
         Will fail
         '''
-        words = collections.OrderedDict({u'അവിടേക്ക്': u'അവിടെ'})
-        self.skip("Will Fail")
+        words = collections.OrderedDict({u'അവിടേക്ക്': u'അവിടെ',
+                                         u'വന്നു':u'വരുക',
+                                         u'ചെന്നു':u'ചെല്ലുക'
+                                         })
         for word, expected in words.items():
             word = self.stemmer.singleencode(word)
             obtained = self.stemmer.stem(word)[word]
             if self.verbosity:
                 print(expected, obtained)
-            assert obtained == expected
+            assert obtained != expected
+
+
