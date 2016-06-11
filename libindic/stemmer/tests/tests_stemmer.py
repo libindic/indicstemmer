@@ -296,4 +296,24 @@ class MalayalamStemmerTest(TestCase):
                 print(expected, obtained)
             assert obtained != expected
 
-
+    def test_verb(self):
+        words = collections.OrderedDict({u'പഠിച്ചു': u'പഠിക്കുക',
+                                         u'അമർത്തി': u'അമർത്തുക',
+                                         u'കിടന്നു': u'കിടക്കുക',
+                                         u'മലർന്നു': u'മലരുക',
+                                         u'അനക്കി': u'അനക്കുക',
+                                         u'പറഞ്ഞു': u'പറയുക',
+                                         u'പഠിക്കുന്നു': u'പഠിക്കുക',
+                                         u'അമർത്തുന്നു': u'അമർത്തുക',
+                                         u'കിടക്കുന്നു': u'കിടക്കുക',
+                                         u'പറയുന്നു': u'പറയുക',
+                                         u'തുടരുന്നു':u'തുടരുക',
+                                         u'കമിഴ്ന്നു':u'കമിഴുക',
+                                         u'പറന്നു':u'പറക്കുക',
+                                         })
+        for word, expected in words.items():
+            word = self.stemmer.singleencode(word)
+            obtained = self.stemmer.stem(word)[word]
+            if self.verbosity:
+                print(expected, obtained)
+            assert obtained == expected
