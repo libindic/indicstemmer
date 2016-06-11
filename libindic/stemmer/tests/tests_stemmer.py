@@ -286,8 +286,8 @@ class MalayalamStemmerTest(TestCase):
         Will fail
         '''
         words = collections.OrderedDict({u'അവിടേക്ക്': u'അവിടെ',
-                                         u'വന്നു':u'വരുക',
-                                         u'ചെന്നു':u'ചെല്ലുക'
+                                         u'വന്നു': u'വരുക',
+                                         u'ചെന്നു': u'ചെല്ലുക'
                                          })
         for word, expected in words.items():
             word = self.stemmer.singleencode(word)
@@ -307,9 +307,9 @@ class MalayalamStemmerTest(TestCase):
                                          u'അമർത്തുന്നു': u'അമർത്തുക',
                                          u'കിടക്കുന്നു': u'കിടക്കുക',
                                          u'പറയുന്നു': u'പറയുക',
-                                         u'തുടരുന്നു':u'തുടരുക',
-                                         u'കമിഴ്ന്നു':u'കമിഴുക',
-                                         u'പറന്നു':u'പറക്കുക',
+                                         u'തുടരുന്നു': u'തുടരുക',
+                                         u'കമിഴ്ന്നു': u'കമിഴുക',
+                                         u'പറന്നു': u'പറക്കുക',
                                          })
         for word, expected in words.items():
             word = self.stemmer.singleencode(word)
