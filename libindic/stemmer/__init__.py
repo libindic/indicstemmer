@@ -76,9 +76,9 @@ class Malayalam:
         word = ""
         while word_iter < word_count:
             word = words[word_iter]
-            original_word = words[word_iter]
+            original_word = word
             word = self.trim(word)
-            word = word.strip('!,.?:')
+            word = word.strip('!,.?:\n')
             try:
                 result = self.trim(word).decode('utf-8')
             except:
