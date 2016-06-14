@@ -75,6 +75,7 @@ class Malayalam:
         word_iter = 0
         word = ""
         while word_iter < word_count:
+            inflections = []
             word = words[word_iter]
             original_word = word
             word = self.trim(word)
@@ -86,7 +87,8 @@ class Malayalam:
             result = self.singleencode(result)
             word = result
             if result in self.dictionary:
-                result_dict[original_word] = result
+                result_dict[original_word] = {"stem": result,
+                                              "inflection": inflections}
                 word_iter += 1
                 continue
             found = True
@@ -100,12 +102,14 @@ class Malayalam:
                 found = False
                 counter = 1
                 if result in self.dictionary:
-                    result_dict[original_word] = result
+                    result_dict[original_word] = {"stem": result,
+                                                  "inflection": inflections}
                     break
                 while counter < len(result):
                     suffix = result[counter:]  # Right to left suffix stripping
                     if suffix in self.rulesDict:
-                        result = result[:counter] + self.rulesDict[suffix]
+                        result = result[:counter] + self.rulesDict[suffix][0]
+                        inflections.append(self.rulesDict[suffix][1])
                         # A satisfying rule found, continue stemming.
                         found = True
                         break
@@ -113,7 +117,8 @@ class Malayalam:
                 # Stop stemming, no matching rules found - probably a root
                 # word.
             word_iter += 1
-            result_dict[original_word] = result
+            result_dict[original_word] = {"stem": result,
+                                          "inflection": inflections}
         return result_dict
 
     def LoadRules(self):
@@ -130,14 +135,21 @@ class Malayalam:
                 try:
                     lhs = items[0].strip().strip(
                         '"').strip("'").decode('utf-8')
-                    rhs = items[1].strip().strip(
+                    rhs_split = items[1].split("!")
+                    rhs = rhs_split[0].strip().strip(
                         '"').strip("'").decode('utf-8')
+                    inflection_id = rhs_split[1].strip().strip(
+                        '"').strip("'")
                 except:
                     lhs = items[0].strip().strip('"').strip("'")
-                    rhs = items[1].strip().strip('"').strip("'")
+                    rhs_split = items[1].split("!")
+                    rhs = rhs_split[0].strip().strip(
+                        '"').strip("'")
+                    inflection_id = rhs_split[1].strip().strip(
+                        '"').strip("'")
                 lhs = self.singleencode(lhs)
                 rhs = self.singleencode(rhs)
-                rules_dict[lhs] = rhs
+                rules_dict[lhs] = [rhs, inflection_id]
             except:
                 continue
         return rules_dict
