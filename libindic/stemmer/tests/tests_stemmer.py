@@ -308,7 +308,7 @@ class MalayalamStemmerTest(TestCase):
                                          u'തുടരുന്നു': u'തുടരുക',
                                          u'കമിഴ്ന്നു': u'കമിഴുക',
                                          u'പറന്നു': u'പറക്കുക',
-                                         u'പഠിക്കുന്ന':u'പഠിക്കുക',
+                                         u'പഠിക്കുന്ന': u'പഠിക്കുക',
                                          })
         for word, expected in words.items():
             word = self.stemmer.singleencode(word)
