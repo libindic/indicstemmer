@@ -19,18 +19,30 @@ Malayalam language only.
 Note: Prefer using virtualenv for installation as the library is in experimental stage
 
 ## Usage
-
-`Input`: String \<str> containing words word1 word2 word3 ...  
-`Output`: Dict \<dict> of the format {'word1': 'stem1', 'word2': 'stem2' ... }
 ```
+Input: String <str> containing words word1 word2 word3 ...
+Output: Dict <dict> of the format
+{
+    'word1': {
+                        'stem': 'stem1',
+                        'inflection': ['tag1', 'tag2', ...]
+             },
+    'word2': {
+                        'stem': 'stem2',
+                        'inflection': ['tag1', 'tag2', ...]
+             },
+    .
+    .
+    .
+}
+
 >>> from libindic.stemmer import Malayalam as mlstemmer
 >>> stemmer = mlstemmer()
 >>> result = stemmer.stem('രാമന്റെ വീട്ടിലേക്ക്')
->>> for word, stem in result.items():
-...     print word, " : ", stem
-... 
-രാമന്റെ  :  രാമൻ
-വീട്ടിലേക്ക്  :  വീട്
+for word, output in result.items():
+...    print word, " : ", output['stem'], " : ", output['inflection']
+രാമന്റെ  :  രാമൻ  :  ['SAMB1']
+വീട്ടിലേക്ക്  :  വീട്  :  ['MISC1', 'ADH1', 'UDH1']
 ```
 
 For more details read the [docs](http://indicstemmer.rtfd.org/)

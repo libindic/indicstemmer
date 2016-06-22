@@ -70,3 +70,6 @@ sandbox/
 
 *.bak
 virtualenvs/
+
+bin/
+web/
