@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright 2010 Santhosh Thottingal <santhosh.thottingal@gmail.com>
+# Copyright: 2016 Balasankar C <balasankarc@autistici.org>
+#            2010 Santhosh Thottingal <santhosh.thottingal@gmail.com>
 # http://www.smc.org.in
 #
 # This program is free software; you can redistribute it and/or modify
@@ -18,8 +19,8 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
 # If you find any bugs or have any suggestions email:
-# santhosh.thottingal@gmail.com
-# URL: http://www.smc.org.in
+# santhosh.thottingal@gmail.com | balasankarc@autistici.org
+# URL: http://www.smc.org.in | http://github.com/libindic/indicstemmer
 
 import os
 
