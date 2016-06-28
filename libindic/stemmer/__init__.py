@@ -36,7 +36,7 @@ class Malayalam:
     def __init__(self):
         self.rules_file = os.path.join(
             os.path.dirname(__file__), 'data/ml_rules.txt')
-        self.rulesDict = None
+        self.rulesDict = self.LoadRules()
         self.dictionary_file = open(os.path.join(
             os.path.dirname(__file__), 'data/ml_rootwords.txt'))
         self.dictionary = self.dictionary_file.readlines()
@@ -68,8 +68,6 @@ class Malayalam:
         :returns: Dictionary with words of the string as keys and their \
         corresponding stems as values.
         """
-        if self.rulesDict is None:
-            self.rulesDict = self.LoadRules()
         words = text.split(" ")
         word_count = len(words)
         result_dict = dict()
