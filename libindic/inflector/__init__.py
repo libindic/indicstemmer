@@ -14,6 +14,10 @@ class Malayalam(object):
         self.rulesDict = json.loads(self.rules_object.read())
 
     def inflect(self, word, tag_list):
+        try:
+            word = word.decode('utf-8')
+        except:
+            pass
         for tag in tag_list[::-1]:
             rules = self.rulesDict[tag]
             flag = False
@@ -26,4 +30,8 @@ class Malayalam(object):
                     break
             if not flag:
                 word = word + rules['default']
+        try:
+            word = word.decode('utf-8')
+        except:
+            pass
         return word
