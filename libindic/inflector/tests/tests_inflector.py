@@ -13,8 +13,8 @@ class MalayalamInflectorTest(TestCase):
         super(MalayalamInflectorTest, self).setUp()
         self.stemmer = stemmer.Malayalam()
         self.inflector = inflector.Malayalam()
-        self.verbosity = True
-        test_path = os.path.abspath(os.path.join(__file__, '../test_words.txt'))
+        test_path = os.path.abspath(
+            os.path.join(__file__, '../test_words.txt'))
         test_file = codecs.open(test_path, encoding="utf-8")
         words_raw = test_file.readlines()
         self.words = [x.strip() for x in words_raw]
@@ -30,8 +30,5 @@ class MalayalamInflectorTest(TestCase):
             stem = stem_result['stem']
             tag_list = stem_result['inflection']
             inflection_result = self.inflector.inflect(stem, tag_list)
-            print(type(root_word))
-            print(type(stem))
-            print(type(tag_list))
-            print(type(inflection_result))
+            inflection_result = self.stemmer.singleencode(inflection_result)
             assert root_word == inflection_result
