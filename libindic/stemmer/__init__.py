@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright 2010 Santhosh Thottingal <santhosh.thottingal@gmail.com>
+# Copyright: 2016 Balasankar C <balasankarc@autistici.org>
+#            2010 Santhosh Thottingal <santhosh.thottingal@gmail.com>
 # http://www.smc.org.in
 #
 # This program is free software; you can redistribute it and/or modify
@@ -18,8 +19,8 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
 # If you find any bugs or have any suggestions email:
-# santhosh.thottingal@gmail.com
-# URL: http://www.smc.org.in
+# santhosh.thottingal@gmail.com | balasankarc@autistici.org
+# URL: http://www.smc.org.in | http://github.com/libindic/indicstemmer
 
 import os
 
@@ -35,7 +36,7 @@ class Malayalam:
     def __init__(self):
         self.rules_file = os.path.join(
             os.path.dirname(__file__), 'data/ml_rules.txt')
-        self.rulesDict = None
+        self.rulesDict = self.LoadRules()
         self.dictionary_file = open(os.path.join(
             os.path.dirname(__file__), 'data/ml_rootwords.txt'))
         self.dictionary = self.dictionary_file.readlines()
@@ -51,12 +52,12 @@ class Malayalam:
         '''
         Normalize word to single encoding.
         '''
-        replace = {'\\u0d15\\u0d4d\\u200d': '\\u0d7f',
-                   '\\u0d23\\u0d4d\\u200d': '\\u0d7a',
-                   '\\u0d28\\u0d4d\\u200d': '\\u0d7b',
-                   '\\u0d30\\u0d4d\\u200d': '\\u0d7c',
-                   '\\u0d32\\u0d4d\\u200d': '\\u0d7d',
-                   '\\u0d33\\u0d4d\\u200d': '\\u0d7e'}
+        replace = {u'\u0d15\u0d4d\u200d': u'\u0d7f',
+                   u'\u0d23\u0d4d\u200d': u'\u0d7a',
+                   u'\u0d28\u0d4d\u200d': u'\u0d7b',
+                   u'\u0d30\u0d4d\u200d': u'\u0d7c',
+                   u'\u0d32\u0d4d\u200d': u'\u0d7d',
+                   u'\u0d33\u0d4d\u200d': u'\u0d7e'}
         for character in replace:
             word = word.replace(character, replace[character])
         return word
@@ -67,8 +68,6 @@ class Malayalam:
         :returns: Dictionary with words of the string as keys and their \
         corresponding stems as values.
         """
-        if self.rulesDict is None:
-            self.rulesDict = self.LoadRules()
         words = text.split(" ")
         word_count = len(words)
         result_dict = dict()
