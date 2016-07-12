@@ -1,10 +1,7 @@
 travis:
 	python setup.py test --coverage \
-		--coverage-package-name=libindic.stemmer
-	flake8 --max-complexity 10 libindic/stemmer
-	python setup.py test --coverage \
-		--coverage-package-name=libindic.inflector
-	flake8 --max-complexity 10 libindic/inflector
+		--coverage-package-name=stemmer
+	flake8 --max-complexity 10 --ignore F401 libindic/stemmer
 
 clean:
 	find . -iname "*.pyc" -exec rm -vf {} \;
