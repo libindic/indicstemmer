@@ -1,18 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from testtools import TestCase
-from libindic import stemmer, inflector
 import codecs
 import os
+
+from testtools import TestCase
+
+from .. import Malayalam as stemmer
+from ..inflector import Malayalam as inflector
 
 
 class MalayalamInflectorTest(TestCase):
 
     def setUp(self):
         super(MalayalamInflectorTest, self).setUp()
-        self.stemmer = stemmer.Malayalam()
-        self.inflector = inflector.Malayalam()
+        self.stemmer = stemmer()
+        self.inflector = inflector()
         test_path = os.path.abspath(
             os.path.join(__file__, '../test_words.txt'))
         test_file = codecs.open(test_path, encoding="utf-8")

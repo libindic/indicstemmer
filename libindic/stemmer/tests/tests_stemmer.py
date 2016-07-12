@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from testtools import TestCase
-from libindic import stemmer
 import collections
+
+from testtools import TestCase
+
+from .. import Malayalam as stemmer
 
 
 class MalayalamStemmerTest(TestCase):
 
     def setUp(self):
         super(MalayalamStemmerTest, self).setUp()
-        self.stemmer = stemmer.Malayalam()
+        self.stemmer = stemmer()
         self.verbosity = False
 
     def test_accusative(self):
