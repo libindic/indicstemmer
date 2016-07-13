@@ -5,11 +5,11 @@ import json
 import os
 
 
-class Malayalam(object):
+class Inflector(object):
 
-    def __init__(self):
+    def __init__(self, lang):
         self.rules_file = os.path.join(
-            os.path.dirname(__file__), 'data/ml_inflection.json')
+            os.path.dirname(__file__), 'data/%s_inflection.json' % lang)
         self.rules_object = open(self.rules_file, 'r')
         self.rulesDict = json.loads(self.rules_object.read())
 

@@ -7,7 +7,7 @@ import os
 from testtools import TestCase
 
 from .. import Malayalam as stemmer
-from ..inflector import Malayalam as inflector
+from ..inflector import Inflector as inflector
 
 
 class MalayalamInflectorTest(TestCase):
@@ -15,7 +15,7 @@ class MalayalamInflectorTest(TestCase):
     def setUp(self):
         super(MalayalamInflectorTest, self).setUp()
         self.stemmer = stemmer()
-        self.inflector = inflector()
+        self.inflector = inflector(lang='ml')
         test_path = os.path.abspath(
             os.path.join(__file__, '../test_words.txt'))
         test_file = codecs.open(test_path, encoding="utf-8")
