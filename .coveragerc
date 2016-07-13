@@ -1,5 +1,6 @@
 [report]
 exclude_lines = 
+    if self.verbosity:
     def get_module_name(self):
     return "Stemmer"
     def get_info(self):
