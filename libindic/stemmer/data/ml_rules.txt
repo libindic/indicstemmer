@@ -134,6 +134,19 @@
 ല്ലും=ല്ല് !AND1
 ുവും=ു !AND2
 
+#സംബോധന
+നേ=ൻ !SAMBO1
+റേ=ർ !SAMBO1
+രേ=ർ !SAMBO2
+ണ്ണേ=ണ്ണ് !SAMBO1
+ളേ=ൾ !SAMBO1
+യേ= !SAMBO1
+ല്ലേ=ല്ല് !SAMBO1
+േ= !SAMBO1
+വേ= !SAMBO1
+ീ=ി !SAMBO1
+
+
 #Verbs
 ച്ചു=ക്കുക !VERB1
 ത്തി=ത്തുക !VERB1
