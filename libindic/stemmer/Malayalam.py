@@ -113,6 +113,8 @@ class Malayalam:
                         found = True
                         break
                     counter = counter + 1
+                if inflections and "STOP" in inflections[-1]:
+                    found = False
                 # Stop stemming, no matching rules found - probably a root
                 # word.
             word_iter += 1
