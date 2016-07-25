@@ -146,6 +146,8 @@
 േ= !SAMBO1
 വേ= !SAMBO1
 ീ=ി !SAMBO1
+ാ=ൻ !SAMBO2
+ൂ=ു !SAMBO1
 
 
 #Verbs
