@@ -113,6 +113,11 @@ class Malayalam:
                         found = True
                         break
                     counter = counter + 1
+                    if inflections and "STOP" in inflections[-1]:
+                        # It is a stop tag. Remove the tag and stop stemming.
+                        inflections.pop()
+                        found = False
+                        break
                 # Stop stemming, no matching rules found - probably a root
                 # word.
             word_iter += 1

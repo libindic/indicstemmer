@@ -318,3 +318,22 @@ class MalayalamStemmerTest(TestCase):
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
+
+    def test_stop(self):
+        words = collections.OrderedDict({u'പതിനാല്': u'പതിനാല്',
+                                         u'തൊണ്ണൂറ്': u'തൊണ്ണൂറ്',
+                                         u'അമ്പത്': u'അമ്പത്',
+                                         u'പന്ത്രണ്ട്': u'പന്ത്രണ്ട്',
+                                         u'നൂറ്റൊന്ന്': u'നൂറ്റൊന്ന്',
+                                         u'പതിനാലിന്റെ': u'പതിനാല്',
+                                         u'നൂറ്റിയൊന്നാൽ': u'നൂറ്റിയൊന്ന്',
+                                         u'അമ്പതിനാൽ': u'അമ്പത്',
+                                         u'തൊണ്ണൂറേ': u'തൊണ്ണൂറ്',
+                                         u'പന്ത്രണ്ടിലേക്ക്': u'പന്ത്രണ്ട്',
+                                         })
+        for word, expected in words.items():
+            word = self.stemmer.singleencode(word)
+            obtained = self.stemmer.stem(word)[word]["stem"]
+            if self.verbosity:
+                print(expected, obtained)
+            assert obtained == expected
