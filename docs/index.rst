@@ -28,11 +28,11 @@ Usage
 API reference
 -------------
 
-.. automodule:: libindic.stemmer.Malayalam
+.. automodule:: stemmer.Malayalam
    :members:
-.. automodule:: libindic.stemmer.Hindi
+.. automodule:: stemmer.Hindi
    :members:
-.. automodule:: libindic.stemmer.Punjabi
+.. automodule:: stemmer.Punjabi
    :members:
 
 Indices and tables
