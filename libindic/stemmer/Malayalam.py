@@ -49,9 +49,9 @@ class Malayalam:
                 [x.strip() for x in self.dictionary])
 
     def singleencode(self, word):
-        '''
+        """
         Normalize word to single encoding.
-        '''
+        """
         replace = {u'\u0d15\u0d4d\u200d': u'\u0d7f',
                    u'\u0d23\u0d4d\u200d': u'\u0d7a',
                    u'\u0d28\u0d4d\u200d': u'\u0d7b',
