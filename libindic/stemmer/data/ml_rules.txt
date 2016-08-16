@@ -143,8 +143,8 @@
 ളേ=ൾ !SAMBO1
 യേ= !SAMBO1
 ല്ലേ=ല്ല് !SAMBO1
-േ= !SAMBO1
-വേ= !SAMBO1
+േ= !SAMBO2
+വേ= !SAMBO3
 ീ=ി !SAMBO1
 ാ=ൻ !SAMBO2
 ൂ=ു !SAMBO1
