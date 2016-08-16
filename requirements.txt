@@ -1,2 +1,3 @@
 marisa_trie
+setupfiles # To handle rreplace's requirements issue
 rreplace
