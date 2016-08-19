@@ -25,7 +25,6 @@
 import os
 
 import marisa_trie
-from rreplace import rreplace
 
 
 class Malayalam:

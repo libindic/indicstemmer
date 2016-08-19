@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from rreplace import rreplace
+from .util import rreplace
 
 
 class Punjabi:
