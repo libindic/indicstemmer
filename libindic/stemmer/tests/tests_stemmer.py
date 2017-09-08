@@ -5,7 +5,8 @@ import collections
 
 from testtools import TestCase
 
-from .. import Malayalam as stemmer
+from .. import Stemmer as stemmer
+from ..Malayalam import Malayalam
 
 
 class MalayalamStemmerTest(TestCase):
@@ -13,6 +14,7 @@ class MalayalamStemmerTest(TestCase):
     def setUp(self):
         super(MalayalamStemmerTest, self).setUp()
         self.stemmer = stemmer()
+        self.malayalam = Malayalam()
         self.verbosity = False
 
     def test_accusative(self):
@@ -44,8 +46,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'രാമൻ.': u'രാമൻ'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print("\t", expected)
                 print("\t", obtained)
@@ -78,8 +80,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിനോട്': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
@@ -111,8 +113,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിന്': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
@@ -143,8 +145,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിനാൽ': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
@@ -177,8 +179,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടിന്റേത്': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
@@ -208,8 +210,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാട്ടിൽ': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
@@ -243,8 +245,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'കാടും': u'കാട്'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
@@ -275,8 +277,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'മൊല്ലാക്കമാർ': u'മൊല്ലാക്ക',
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
@@ -290,8 +292,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'ചെന്നു': u'ചെല്ലുക'
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained != expected
@@ -313,8 +315,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'പഠിക്കുന്ന': u'പഠിക്കുക',
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected
@@ -332,8 +334,8 @@ class MalayalamStemmerTest(TestCase):
                                          u'പന്ത്രണ്ടിലേക്ക്': u'പന്ത്രണ്ട്',
                                          })
         for word, expected in words.items():
-            word = self.stemmer.singleencode(word)
-            obtained = self.stemmer.stem(word)[word]["stem"]
+            word = self.malayalam.singleencode(word)
+            obtained = self.stemmer.stem("malayalam", word)[word]["stem"]
             if self.verbosity:
                 print(expected, obtained)
             assert obtained == expected

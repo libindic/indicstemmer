@@ -36,10 +36,10 @@ Output: Dict <dict> of the format
     .
 }
 
->>> from libindic.stemmer import Malayalam as mlstemmer
->>> stemmer = mlstemmer()
->>> result = stemmer.stem('രാമന്റെ വീട്ടിലേക്ക്')
-for word, output in result.items():
+>>> from libindic.stemmer import Stemmer
+>>> stemmer = Stemmer()
+>>> result = stemmer.stem(language='malayalam', text=രാമന്റെ വീട്ടിലേക്ക്')
+>>> for word, output in result.items():
 ...    print word, " : ", output['stem'], " : ", output['inflection']
 രാമന്റെ  :  രാമൻ  :  ['SAMB1']
 വീട്ടിലേക്ക്  :  വീട്  :  ['MISC1', 'ADH1', 'UDH1']
