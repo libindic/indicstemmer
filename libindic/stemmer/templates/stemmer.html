@@ -36,7 +36,7 @@
             // TODO: write this in a better way.
             $('#result').append("<table id='resulttable' class='table table-bordered table-striped'><tr><th>Word</th><th>Stem</th></tr></table>").show();
             for (var key in resultobj){
-            $('#resulttable tr:last').after("<tr><td>" + key +"</td><td>" + resultobj[key] +"</td></tr>" );
+            $('#resulttable tr:last').after("<tr><td>" + key +"</td><td>" + resultobj[key]['stem'] +"</td></tr>" );
             };
           },
           error: function(msg) {
