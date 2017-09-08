@@ -12,16 +12,17 @@
         targetlang = $("select[name=lang]", 'form').val(),
         text= $("textarea[name=input_text]", 'form').val(),
         jsonRequest = {
-          method:  "indicstemmer.stem",
-          params: [text,targetlang],
-          id: ""
+          method:  "stemmer.stem",
+          params: [targetlang,text],
+          id: "jsonrpc",
+          jsonrpc: "2"
         };
 
       if(text !== "") {
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
-          url: "JSONRPC",
+          url: "/api/JSONRPC",
           data: JSON.stringify(jsonRequest),
           dataType: "json",
           beforeSend:function(){
@@ -63,9 +64,9 @@
         <label class="control-label col-sm-3" for="lang">Language</label>
         <div class="col-sm-3">
             <select id="lang" name="lang" class="form-control">
-                <option value="ml_IN">Malayalam</option>
-                <option value="hi_IN">Hindi</option>                
-                <option value="pu_IN">Punjabi</option>                
+                <option value="malayalam">Malayalam</option>
+                <option value="hindi">Hindi</option>
+                <option value="punjabi">Punjabi</option>
             </select>
 	</div>
            <input type="submit" id="Stem_button" value="Stem"  name="action" class="btn btn-default pull-right"/>
