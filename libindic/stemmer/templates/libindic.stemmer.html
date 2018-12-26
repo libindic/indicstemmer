@@ -12,7 +12,8 @@
         targetlang = $("select[name=lang]", 'form').val(),
         text= $("textarea[name=input_text]", 'form').val(),
         jsonRequest = {
-          method:  "indicstemmer.stem",
+          module: "libindic.stemmer",
+          method: "stem",
           params: [text,targetlang],
           id: ""
         };
@@ -21,7 +22,7 @@
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
-          url: "JSONRPC",
+          url: "api",
           data: JSON.stringify(jsonRequest),
           dataType: "json",
           beforeSend:function(){
@@ -35,7 +36,7 @@
             // TODO: write this in a better way.
             $('#result').append("<table id='resulttable' class='table table-bordered table-striped'><tr><th>Word</th><th>Stem</th></tr></table>").show();
             for (var key in resultobj){
-            $('#resulttable tr:last').after("<tr><td>" + key +"</td><td>" + resultobj[key] +"</td></tr>" );
+            $('#resulttable tr:last').after("<tr><td>" + key +"</td><td>" + JSON.stringify(resultobj[key]) +"</td></tr>" );
             };
           },
           error: function(msg) {
@@ -64,8 +65,8 @@
         <div class="col-sm-3">
             <select id="lang" name="lang" class="form-control">
                 <option value="ml_IN">Malayalam</option>
-                <option value="hi_IN">Hindi</option>                
-                <option value="pu_IN">Punjabi</option>                
+                <option value="hi_IN">Hindi</option>
+                <option value="pa_IN">Punjabi</option>
             </select>
 	</div>
            <input type="submit" id="Stem_button" value="Stem"  name="action" class="btn btn-default pull-right"/>
