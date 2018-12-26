@@ -8,13 +8,13 @@ from .Punjabi import Punjabi
 
 class Stemmer:
 
-    def stem(self, language, text):
-        if language.lower() == 'malayalam':
+    def stem(self, text, language):
+        if language == 'ml_IN':
             instance = Malayalam()
-        elif language.lower() == 'hindi':
+        elif language == 'hi_IN':
             instance = Hindi()
-        elif language.lower() == 'punjabi':
-            instance = Punjabi
+        elif language == 'pa_IN':
+            instance = Punjabi()
         else:
             return "Unknown language"
         return instance.stem(text)
