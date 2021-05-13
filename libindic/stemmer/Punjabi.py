@@ -23,7 +23,7 @@ class Punjabi:
         return suf
 
     def stem(self, text):
-        tag = self.suffixes.keys()
+        tag = [1,2,3,4,5]
         tag.reverse()
         dic_hi = {}
         for word in text.split():
